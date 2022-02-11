@@ -1,0 +1,76 @@
+import React, { useState } from 'react';
+import AdminService from '../services/AdminService';
+import { useNavigate } from 'react-router-dom';
+
+function AddMember() {
+    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [houseNo, setHouseNo] = useState(0);
+    const [flatSize, setFlatSize] = useState("");
+
+    let navigate = useNavigate();
+    function add(e) {
+        e.preventDefault();
+        let user = { name:name, username: username, email:email, phone: phone, houseNo:houseNo, flatSize:flatSize };
+        AdminService.addUser(user).then(() => {
+            navigate('/showMembers');
+        });
+    }
+    return (
+        <div>
+            <div className="container">
+                <div className="row">
+                    <div className="card col-md-6 offset-md-3 offset-md-3">
+                        {
+                            <h2 className='text-center'>Add Member</h2>
+                        }
+                        <div className="card-body">
+                            <form onSubmit={add}>
+                                <div className="form-group">
+                                    <label>Name</label>
+                                    <input type="text" className="form-control" placeholder="Enter Name" name="name" 
+                                    value={name} onChange={(event)=>setName(event.target.value)}/>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Username</label>
+                                    <input type="text" className="form-control" placeholder="Enter username" name="username"
+                                    value={username} onChange={(event)=>setUsername(event.target.value)} />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" className="form-control" placeholder="Enter email" name="email"
+                                    value={email} onChange={(event)=>setEmail(event.target.value)} />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Phone</label>
+                                    <input type="text" className="form-control" placeholder="Enter phone number"
+                                    value={phone} onChange={(event)=>setPhone(event.target.value)} />
+                                </div>
+                                <div className="form-group">
+                                    <label>House Number</label>
+                                    <input type="number" className="form-control" placeholder="Enter house number"
+                                    value={houseNo} onChange={(event)=>setHouseNo(event.target.value)} />
+                                </div>
+                                <div className="form-group">
+                                    <label>Flat Size</label>
+                                    <input type="text" className="form-control" placeholder="Enter flat size"
+                                    value={flatSize} onChange={(event)=>setFlatSize(event.target.value)} />
+                                </div>
+
+                                <button type="submit" className="btn btn-primary btn-block">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
+}
+
+export default AddMember;

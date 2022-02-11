@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
 /*
@@ -30,9 +30,13 @@ function Home(){
     function userLogin(){
         navigate('/userLogin');
     }
+    function adminLogin(){
+        navigate('/adminProfile');
+    }
     return (
         <div>
             <button className='btn btn-primary' onClick={userLogin}>User Login</button>
+            <button className='btn btn-primary' onClick={adminLogin}>Admin Login</button>
         </div>
     );
 }
