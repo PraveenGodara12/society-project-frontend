@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
 import UserService from '../services/UserService';
 import {useNavigate} from 'react-router-dom';
+import validator from 'validator';
 
 function UserLogin(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     let navigate = useNavigate();
+    function myValidator(){
+        let uValid=false;
+        let pValid=false;
+        if(validator.isAlphanumeric(username,'en-US',{ignore:"._"})&&validator.isLength(username,{min:12})){
+            uValid=true;
+        }
+        if(validator.isStrongPassword(password,{minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1})){
+            pValid=true;
+        }
+        return uValid&&pValid;
+    }
     function login(e){
         e.preventDefault();
+        if(!myValidator()){
+            alert("Invalid Username or Password!");
+            return;
+        }
         let user = {username: username, password:password};
         console.log('User =>'+JSON.stringify(user));
         UserService.userLogin(user).then(res=>{
