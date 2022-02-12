@@ -14,7 +14,7 @@ function useIdle(options) {
     return isIdle
   }
 
-function MaintenanceRecords(){
+function DefaultersRecords(){
     let navigate = useNavigate();
     const isIdle = useIdle({timeToIdle: 1000*60*5});
     if(isIdle){
@@ -26,22 +26,18 @@ function MaintenanceRecords(){
 
     useEffect(()=>{
         let rec = {month,year};
-        AdminService.getMaintenanceRecords(rec).then((res)=>{
+        AdminService.getDefaultersRecords(rec).then((res)=>{
             setMaintenanceRecords(res.data);
         }) 
     },[]);
 
-    function addRecord(){
-        navigate('/addRecord/'+0);
-    }
     function editRecord(id){
         navigate('/addRecord/'+id);
     }
     
     return (
         <div>
-            <h1>Maintenance Records</h1>
-            <button className='btn btn-primary' onClick={addRecord}>Add Record</button>
+            <h1>Defaulters Records</h1>
             <table>
                 <thead>
                     <tr>
@@ -82,4 +78,4 @@ function MaintenanceRecords(){
         </div>
     );
 }
-export default MaintenanceRecords;
+export default DefaultersRecords;

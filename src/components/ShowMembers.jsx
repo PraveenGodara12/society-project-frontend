@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import AdminService from '../services/AdminService';
+import createActivityDetector from 'activity-detector';
+
+function useIdle(options) {
+    const [isIdle, setIsIdle] = React.useState(false)
+    React.useEffect(() => {
+      const activityDetector = createActivityDetector(options)
+      activityDetector.on('idle', () => setIsIdle(true))
+      activityDetector.on('active', () => setIsIdle(false))
+      return () => activityDetector.stop()
+    }, [])
+    return isIdle
+  }
 
 function ShowMembers(){
+    let navigate = useNavigate();
+    const isIdle = useIdle({timeToIdle: 1000*60*5});
+    if(isIdle){
+        navigate('/');
+    }
 
     const [memberRecords,setMemberRecords] = useState([]);
 
@@ -12,10 +29,11 @@ function ShowMembers(){
         }) 
     },[]);
 
-    let navigate = useNavigate();
-
     function addMember(){
         navigate('/addMember/'+0);
+    }
+    function adminProfile(){
+        navigate('/adminProfile');
     }
     function editMember(id){
         navigate('/addMember/'+id);
@@ -30,6 +48,7 @@ function ShowMembers(){
         <div>
             <h1>Society Members</h1>
             <button className='btn btn-primary' onClick={addMember}>AddMember</button>
+            <button className='btn btn-primary' onClick={adminProfile}>Profile</button>
             <table>
                 <thead>
                     <tr>

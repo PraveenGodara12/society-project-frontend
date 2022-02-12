@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import UserService from '../services/UserService';
 import {useNavigate} from 'react-router-dom';
+import createActivityDetector from 'activity-detector';
+
+function useIdle(options) {
+    const [isIdle, setIsIdle] = React.useState(false)
+    React.useEffect(() => {
+      const activityDetector = createActivityDetector(options)
+      activityDetector.on('idle', () => setIsIdle(true))
+      activityDetector.on('active', () => setIsIdle(false))
+      return () => activityDetector.stop()
+    }, [])
+    return isIdle
+  }
 
 function UserProfile() {
+    let navigate = useNavigate();
+    const isIdle = useIdle({timeToIdle: 1000*60*5});
+    if(isIdle){
+        navigate('/');
+    }
     const [userid,setUserid] = useState(0);
     const [name,setName] = useState('');
     const [username,setUsername] = useState('');
@@ -26,8 +43,6 @@ function UserProfile() {
             setMaintenanceRecords(res.data);
         })
     },[userid]);
-
-    let navigate = useNavigate();
     function showBill(){
         navigate('/societyBillRecord');
     }

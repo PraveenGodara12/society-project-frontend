@@ -1,7 +1,25 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
+import createActivityDetector from 'activity-detector';
+import {useNavigate} from 'react-router-dom';
+
+function useIdle(options) {
+    const [isIdle, setIsIdle] = React.useState(false)
+    React.useEffect(() => {
+      const activityDetector = createActivityDetector(options)
+      activityDetector.on('idle', () => setIsIdle(true))
+      activityDetector.on('active', () => setIsIdle(false))
+      return () => activityDetector.stop()
+    }, [])
+    return isIdle
+  }
 
 function SocietyBillRecord(){
+    let navigate = useNavigate();
+    const isIdle = useIdle({timeToIdle: 1000*60*5});
+    if(isIdle){
+        navigate('/');
+    }
     const [billRecord, setBillRecord] = useState([]);
 
     useEffect(()=>{

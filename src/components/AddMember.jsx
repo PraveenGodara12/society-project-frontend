@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import AdminService from '../services/AdminService';
 import { useNavigate, useParams } from 'react-router-dom';
+import createActivityDetector from 'activity-detector';
+
+function useIdle(options) {
+    const [isIdle, setIsIdle] = React.useState(false)
+    React.useEffect(() => {
+      const activityDetector = createActivityDetector(options)
+      activityDetector.on('idle', () => setIsIdle(true))
+      activityDetector.on('active', () => setIsIdle(false))
+      return () => activityDetector.stop()
+    }, [])
+    return isIdle
+  }
 
 function AddMember() {
+    let navigate = useNavigate();
+    const isIdle = useIdle({timeToIdle: 1000*60*5});
+    if(isIdle){
+        navigate('/');
+    }
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -21,7 +38,6 @@ function AddMember() {
             setFlatSize(res.data.flatSize);
         });
     },[]);
-    let navigate = useNavigate();
     function add(e) {
         e.preventDefault();
         let user = { name:name, username: username, email:email, phone: phone, houseNo:houseNo, flatSize:flatSize };

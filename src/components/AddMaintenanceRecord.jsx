@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import AdminService from '../services/AdminService';
 import { useNavigate, useParams } from 'react-router-dom';
+import createActivityDetector from 'activity-detector';
+
+function useIdle(options) {
+    const [isIdle, setIsIdle] = React.useState(false)
+    React.useEffect(() => {
+      const activityDetector = createActivityDetector(options)
+      activityDetector.on('idle', () => setIsIdle(true))
+      activityDetector.on('active', () => setIsIdle(false))
+      return () => activityDetector.stop()
+    }, [])
+    return isIdle
+  }
 
 function AddMaintenanceRecord() {
+    let navigate = useNavigate();
+    const isIdle = useIdle({timeToIdle: 1000*60*5});
+    if(isIdle){
+        navigate('/');
+    }
     const [user, setUser] = useState(0);
     const [bill, setBill] = useState(0);
     const [garbageCollector, setGarbageCollector] = useState(0);
@@ -44,7 +61,6 @@ function AddMaintenanceRecord() {
             setBillList(res.data);
         });
     },[]);
-    let navigate = useNavigate();
     function add(e) {
         e.preventDefault();
         let mRecord = {garbageCollector:garbageCollector, waterCharges: waterCharges, electricity:electricity, others:others, totalAmount: totalAmount, status: status, paymentDate: paymentDate, month: month, year: year };

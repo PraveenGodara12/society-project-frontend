@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import {useNavigate} from 'react-router-dom';
-import AdminService from '../services/AdminService';
+import React, { useEffect, useState } from "react";
+import AdminService from "../services/AdminService";
 import createActivityDetector from 'activity-detector';
+import {useNavigate} from 'react-router-dom';
 
 function useIdle(options) {
     const [isIdle, setIsIdle] = React.useState(false)
@@ -14,66 +14,47 @@ function useIdle(options) {
     return isIdle
   }
 
-function MaintenanceRecords(){
+function SocietyBillRecordsAdmin(){
     let navigate = useNavigate();
     const isIdle = useIdle({timeToIdle: 1000*60*5});
     if(isIdle){
         navigate('/');
     }
-    const [month,setMonth] = useState("Feb");
-    const [year,setYear] = useState(2020);
-    const [maintenanceRecords,setMaintenanceRecords] = useState([]);
+    const [billRecord, setBillRecord] = useState([]);
 
     useEffect(()=>{
-        let rec = {month,year};
-        AdminService.getMaintenanceRecords(rec).then((res)=>{
-            setMaintenanceRecords(res.data);
-        }) 
+        AdminService.getSocietyBill().then(res=>{
+            setBillRecord(res.data);
+        })
     },[]);
 
-    function addRecord(){
-        navigate('/addRecord/'+0);
-    }
-    function editRecord(id){
-        navigate('/addRecord/'+id);
-    }
-    
     return (
         <div>
-            <h1>Maintenance Records</h1>
-            <button className='btn btn-primary' onClick={addRecord}>Add Record</button>
+            <h1>Society Bill Records</h1>
             <table>
                 <thead>
                     <tr>
-                        <td>Record ID</td>
-                        <td>User ID</td>
-                        <td>Bill ID</td>
+                        <td>Month</td>
                         <td>Garbage Collector</td>
                         <td>Water Charges</td>
                         <td>Electricity</td>
                         <td>Others</td>
                         <td>Total Amount</td>
                         <td>Status</td>
-                        <td>Payment Date</td>
-                        <td>Edit</td>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        maintenanceRecords.map(
+                        billRecord.map(
                             rec => 
                             <tr>
-                                <td>{rec.recordID}</td>
-                                <td>{rec.user.userID}</td>
-                                <td>{rec.bill.billID}</td>
+                                <td>{rec.month}</td>
                                 <td>{rec.garbageCollector}</td>
                                 <td>{rec.waterCharges}</td>
                                 <td>{rec.electricity}</td>
                                 <td>{rec.others}</td>
                                 <td>{rec.totalAmount}</td>
                                 <td>{rec.status}</td>
-                                <td>{rec.paymentDate}</td>
-                                <td><button className='btn btn-success' onClick={()=>editRecord(rec.recordID)}>Edit</button></td>
                             </tr>
                         )
                     }
@@ -82,4 +63,4 @@ function MaintenanceRecords(){
         </div>
     );
 }
-export default MaintenanceRecords;
+export default SocietyBillRecordsAdmin;

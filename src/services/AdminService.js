@@ -3,8 +3,13 @@ import axios from 'axios';
 const BILL_API_BASE_URL="http://localhost:8080/api/v1/billRecord";
 const MEMBER_API_BASE_URL="http://localhost:8080/api/v1/members";
 const Maintenance_API_BASE_URL="http://localhost:8080/api/v1/societymaintenance";
+const Defaulter_API_BASE_URL="http://localhost:8080/api/v1/defaulters";
+const ADMIN_API_BASE_URL="http://localhost:8080/api/v1/admin"
 
 class AdminService{
+    adminLogin(user){
+        return axios.post(ADMIN_API_BASE_URL,user);
+    }
     getSocietyMembers(){
         return axios.get(MEMBER_API_BASE_URL);
     }
@@ -26,8 +31,14 @@ class AdminService{
     getMaintenanceRecords(obj){
         return axios.get(Maintenance_API_BASE_URL+"/"+obj.month+"/"+obj.year);
     }
+    getDefaultersRecords(obj){
+        return axios.get(Defaulter_API_BASE_URL);
+    }
     getMaintenanceRecordById(id){
         return axios.get(Maintenance_API_BASE_URL+"/"+id);
+    }
+    getSocietyBillRecords(obj){
+        return axios.get(Maintenance_API_BASE_URL+"/"+obj.month+"/"+obj.year);
     }
 }
 export default new AdminService()
