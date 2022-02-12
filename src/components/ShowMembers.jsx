@@ -15,7 +15,15 @@ function ShowMembers(){
     let navigate = useNavigate();
 
     function addMember(){
-        navigate('/addMember');
+        navigate('/addMember/'+0);
+    }
+    function editMember(id){
+        navigate('/addMember/'+id);
+    }
+    function deleteMember(id){
+        AdminService.deleteMember(id).then(res=>{
+            setMemberRecords(res.data);
+        });
     }
     
     return (
@@ -32,6 +40,8 @@ function ShowMembers(){
                         <td>Phone</td>
                         <td>House Number</td>
                         <td>Flat Size</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +56,8 @@ function ShowMembers(){
                                 <td>{rec.phone}</td>
                                 <td>{rec.houseNo}</td>
                                 <td>{rec.flatSize}</td>
+                                <td><button className='btn btn-success' onClick={()=>editMember(rec.userID)}>Edit</button></td>
+                                <td><button className='btn btn-danger' onClick={()=>deleteMember(rec.userID)}>Delete</button></td>
                             </tr>
                         )
                     }

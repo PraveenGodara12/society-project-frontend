@@ -9,6 +9,8 @@ import SocietyBillRecord from './components/SocietyBillRecord';
 import AdminProfile from './components/AdminProfile';
 import ShowMembers from './components/ShowMembers';
 import AddMember from './components/AddMember';
+import MaintenanceRecords from './components/MaintenanceRecords';
+import AddMaintenanceRecord from './components/AddMaintenanceRecord';
 
 function App() {
   return (
@@ -20,8 +22,10 @@ function App() {
                     <Route path = "/userProfile" element = {<UserProfile/>}></Route>
                     <Route path = "/adminProfile" element = {<AdminProfile/>}></Route>
                     <Route path = "/showMembers" element = {<ShowMembers/>}></Route>
-                    <Route path = "/addMember" element = {<AddMember/>}></Route>
+                    <Route path = "/addMember/:id" element = {<AddMember/>}></Route>
+                    <Route path = "/addRecord/:id" element = {<AddMaintenanceRecord/>}></Route>
                     <Route path = "/societyBillRecord" element = {<SocietyBillRecord/>}></Route>
+                    <Route path = "/showMaintenance" element = {<MaintenanceRecords/>}></Route>
               </Routes>
         </Router>
   );

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminService from '../services/AdminService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function AddMember() {
     const [name, setName] = useState("");
@@ -9,12 +9,23 @@ function AddMember() {
     const [phone, setPhone] = useState("");
     const [houseNo, setHouseNo] = useState(0);
     const [flatSize, setFlatSize] = useState("");
+    let id = useParams().id;
 
+    useEffect(()=>{
+        AdminService.getUserById(id).then((res)=>{
+            setName(res.data.name);
+            setUsername(res.data.username);
+            setEmail(res.data.email);
+            setPhone(res.data.phone);
+            setHouseNo(res.data.houseNo);
+            setFlatSize(res.data.flatSize);
+        });
+    },[]);
     let navigate = useNavigate();
     function add(e) {
         e.preventDefault();
         let user = { name:name, username: username, email:email, phone: phone, houseNo:houseNo, flatSize:flatSize };
-        AdminService.addUser(user).then(() => {
+        AdminService.addUser(user,id).then(() => {
             navigate('/showMembers');
         });
     }

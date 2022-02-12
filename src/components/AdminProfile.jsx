@@ -5,9 +5,13 @@ function AdminProfile(){
     function showMembers(){
         navigate('/showMembers');
     }
+    function showMaintenance(){
+        navigate('/showMaintenance');
+    }
     return (
         <div>
             <button className='btn btn-primary' onClick={showMembers}>Society Members</button>
+            <button className='btn btn-primary' onClick={showMaintenance}>Maintenance Records</button>
         </div>
     );
 }
