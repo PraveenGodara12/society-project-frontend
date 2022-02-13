@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdminService from '../services/AdminService';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import validator from 'validator';
 
 function AdminLogin(){
@@ -55,10 +55,32 @@ function AdminLogin(){
     }
     return (
         <div>
-                <br></br>
+        <div className='loginBackGround'>
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                 <div className="container">
+                    <h1>
+                        Society Maintenance Portal
+                    </h1>
+                </div>
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul className="navbar-nav ml-auto navbar-right">
+                        <li className="nav-item">
+                            <Link className="nav-link" to={"/"}><p className='navi-links'>Home</p></Link>
+                        </li>
+                        <li className="nav-item ">
+                            <Link className="nav-link" to={"/userlogin"}><p className='navi-links'>User Login</p></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={"/adminlogin"}><p className='navi-links-active'>Admin Login</p></Link>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+                <br></br>
+                <section className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
+                            <br/>
                             {
                                 <h2 className='text-center'>Admin Login</h2>
                             }
@@ -69,24 +91,32 @@ function AdminLogin(){
                                         <input placeholder="Enter username" name="username" className="form-control"
                                            type="text" value={username} onChange={(event)=>setUsername(event.target.value)} />
                                     </div>
+                                    <br/>
                                     <div className="form-group">
                                         <label> Password: </label>
                                         <input placeholder="Enter password" name="password" className="form-control"
                                           type="password"  value={password} onChange={(event)=>setPassword(event.target.value)} />
                                     </div>
+                                    <br/>
                                     <div className="form-group">
-                                        <label htmlFor="rememberme"> Remember Me: </label>
-                                        <input name="rememberme" id="rememberme" className="form-control"
+                                        <input name="rememberme" id="rememberme" className="form-check-input"
                                            type="checkbox" checked={rememberme} onChange={(event)=>setRememberme(event.target.checked)} />
+                                        <label htmlFor="rememberme"> Remember Me </label>
                                     </div>
-
-                                    <button className="btn btn-success" >Login</button>
+                                    <br/>
+                                    <div className="text-center"><button type="submit" className="btn btn-success loginButton" >Login</button></div>
                                 </form>
                             </div>
                         </div>
                     </div>
 
-                </div>
+                </section>
+            </div>
+            <footer class="page-footer font-small blue myFooter">
+        <div class="footer-copyright text-center py-3"><span className='navi-links'>© 2020 Copyright:
+            <a href="https://localhost:3000/"> SocietyMaintenance.com</a></span>
+        </div>
+    </footer>
             </div>
     );
 }

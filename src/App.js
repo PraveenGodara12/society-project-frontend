@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/Home';
 import UserLogin from './components/UserLogin';
+import UserLogin2 from './components/UserLogin2';
 import UserProfile from './components/UserProfile';
 import AdminLogin from './components/AdminLogin';
 import SocietyBillRecord from './components/SocietyBillRecord';
@@ -20,6 +21,7 @@ function App() {
               <Routes> 
                     <Route path = "/" exact element = {<Home/>}></Route>
                     <Route path = "/userlogin" element = {<UserLogin/>}></Route>
+                    <Route path = "/userlogin2" element = {<UserLogin2/>}></Route>
                     <Route path = "/adminLogin" element = {<AdminLogin/>}></Route>
                     <Route path = "/userProfile" element = {<UserProfile/>}></Route>
                     <Route path = "/adminProfile" element = {<AdminProfile/>}></Route>
