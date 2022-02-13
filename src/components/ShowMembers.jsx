@@ -82,10 +82,7 @@ function ShowMembers() {
                         Society Members
                         </h1>
                     </div>
-                    <div className='btn-group'>
                     <button className='btn btn-primary' onClick={addMember}>AddMember</button>
-                    <button className='btn btn-primary' onClick={adminProfile}>Profile</button>
-                    </div>
                     <div className='scrollMyTableBig'>
                         <table className='table table-bordered table-responsive table-striped'>
                             <thead>

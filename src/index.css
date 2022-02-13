@@ -69,6 +69,13 @@ body, html, .App, #root, .auth-wrapper {
   background-color: #ffffff;
   border-radius: 5px;
 }
+.myContentBig{
+  width:100%;
+  height:700px;
+  padding:2%;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
 .scrollMyTable{
   overflow-y: auto;
   height:250px;
@@ -80,10 +87,20 @@ body, html, .App, #root, .auth-wrapper {
   width:100%;
 }
 .myformselect{
-  width:100px;
+  width:150px;
 }
 .homepagecontent{
-  margin-top:20px;
+  padding:20px;
+  margin:20px;
+}
+.homepagecontent h5{
+  color:#004d40;
+}
+.homepagecontent h1{
+  color:#00251a;
+}
+.homepagecontent p{
+  color:#003300;
 }
 
 .auth-wrapper {

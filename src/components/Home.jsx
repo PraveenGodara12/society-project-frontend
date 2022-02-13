@@ -29,14 +29,14 @@ function Home() {
                 <br></br>
                 <section className="container text-center">
                     <div className="row">
-                        <div className="card col-md-10 offset-md-1 offset-md-1">
+                        <div className="card col-md-8 offset-md-2 offset-md-2 homepagecontent">
                             <h1>Welcome to Society Maintenance Portal</h1>
                         </div>
                     </div>
                     <div className='row'>
-                    <div className="card col-md-10 offset-md-1 offset-md-1 homepagecontent">
-                        <h5>The perfect solution to make living in Society a pleasant and convenient experience - for the residents(users), the admins.</h5>
-                        <h6>Key factors of Society Maintenance Portal is the ease of operating the portal both for admins and users, and the portal is quite comprehensive for managing and maintaining.</h6>
+                    <div className="card col-md-8 offset-md-2 offset-md-2 homepagecontent">
+                        <h5>The perfect solution to make living in Society a pleasant and convenient experience</h5>
+                        <p>Key factors of Society Maintenance Portal is the ease of operating the portal both for admins and users, and the portal is quite comprehensive for managing and maintaining.</p>
                         </div>
                     </div>
                 </section>

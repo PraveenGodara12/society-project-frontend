@@ -14,6 +14,7 @@ import MaintenanceRecords from './components/MaintenanceRecords';
 import AddMaintenanceRecord from './components/AddMaintenanceRecord';
 import DefaultersRecords from './components/DefaultersRecords';
 import SocietyBillRecordsAdmin from './components/SocietyBillRecordsAdmin';
+import AddSocietyBillRecord from './components/AddSocietyBillRecord';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                     <Route path = "/showMaintenance" element = {<MaintenanceRecords/>}></Route>
                     <Route path = "/showDefaulters" element = {<DefaultersRecords/>}></Route>
                     <Route path = "/showSocietyBillRecords" element = {<SocietyBillRecordsAdmin/>}></Route>
+                    <Route path = "/addSocietyBillRecord" element = {<AddSocietyBillRecord/>}></Route>
               </Routes>
         </Router>
   );

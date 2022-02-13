@@ -28,6 +28,9 @@ class AdminService{
     addMaintenanceRecord(record,user,bill,id){
         return axios.post(Maintenance_API_BASE_URL+"/"+id+"/"+user+"/"+bill,record);
     }
+    addSocietyBillRecord(record){
+        return axios.post(BILL_API_BASE_URL,record);
+    }
     getMaintenanceRecords(obj){
         return axios.get(Maintenance_API_BASE_URL+"/"+obj.month+"/"+obj.year);
     }

@@ -80,7 +80,7 @@ function AddMember() {
                 <section className="myContent">
                     <div className="container">
                         <div className="row">
-                            <div className="card col-md-6 offset-md-3 offset-md-3">
+                            <div className="card col-md-8 offset-md-2 offset-md-2">
                                 {
                                     <h2 className='text-center'>Add Member</h2>
                                 }
@@ -119,8 +119,8 @@ function AddMember() {
                                             <input type="text" className="form-control" placeholder="Enter flat size"
                                                 value={flatSize} onChange={(event) => setFlatSize(event.target.value)} />
                                         </div>
-
-                                        <button type="submit" className="btn btn-primary btn-block">Add</button>
+                                        <br/>
+                                        <button type="submit" className="btn btn-primary btn-block loginButton">Add</button>
                                     </form>
                                 </div>
                             </div>
