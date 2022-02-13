@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserService from '../services/UserService';
 import {useNavigate} from 'react-router-dom';
 import validator from 'validator';
@@ -6,6 +6,16 @@ import validator from 'validator';
 function UserLogin(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [rememberme, setRememberme] = useState(false);
+
+    useEffect(()=>{
+        setRememberme(localStorage.getItem("rememberme"));
+        if(localStorage.getItem("rememberme")){
+            console.log(localStorage.getItem("username"));
+            setUsername(localStorage.getItem("username"));
+            setPassword(localStorage.getItem("password"));
+        }
+    },[]);
 
     let navigate = useNavigate();
     function myValidator(){
@@ -35,6 +45,13 @@ function UserLogin(){
             localStorage.setItem('phone',res.data.phone);
             localStorage.setItem('houseNo',res.data.houseNo);
             localStorage.setItem('flatSize',res.data.flatSize);
+            if(rememberme){
+                localStorage.setItem('password', res.data.password);
+                localStorage.setItem('rememberme',true);
+            }else{
+                localStorage.setItem('password', '');
+                localStorage.setItem('rememberme',false);
+            }
             navigate('/userProfile');
         });
     }
@@ -52,12 +69,17 @@ function UserLogin(){
                                     <div className="form-group">
                                         <label> Username: </label>
                                         <input placeholder="Enter username" name="username" className="form-control"
-                                            value={username} onChange={(event)=>setUsername(event.target.value)} />
+                                            type="text" value={username} onChange={(event)=>setUsername(event.target.value)} />
                                     </div>
                                     <div className="form-group">
                                         <label> Password: </label>
                                         <input placeholder="Enter password" name="password" className="form-control"
-                                            value={password} onChange={(event)=>setPassword(event.target.value)} />
+                                           type="password" value={password} onChange={(event)=>setPassword(event.target.value)} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="rememberme"> Remember Me: </label>
+                                        <input name="rememberme" id="rememberme" className="form-control"
+                                           type="checkbox" checked={rememberme} onChange={(event)=>setRememberme(event.target.checked)} />
                                     </div>
 
                                     <button className="btn btn-success" >Login</button>
