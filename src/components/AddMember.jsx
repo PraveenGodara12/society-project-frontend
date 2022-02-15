@@ -82,7 +82,7 @@ function AddMember() {
                         <div className="row">
                             <div className="card col-md-8 offset-md-2 offset-md-2">
                                 {
-                                    <h2 className='text-center'>Add Member</h2>
+                                    <h2 className='text-center'>Update Member</h2>
                                 }
                                 <div className="card-body">
                                     <form onSubmit={add}>

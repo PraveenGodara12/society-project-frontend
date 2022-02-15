@@ -42,11 +42,11 @@ function DefaultersRecords() {
             setYearList([...new Set(yLis)]);
         })
     }, []);
+    
 
     function editRecord(id) {
         navigate('/addRecord/' + id);
     }
-
     return (
         <div>
             <div className='loginBackGround'>

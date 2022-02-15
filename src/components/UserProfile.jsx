@@ -17,7 +17,7 @@ function useIdle(options) {
 function UserProfile() {
     let navigate = useNavigate();
     const isIdle = useIdle({ timeToIdle: 1000 * 60 * 5 });
-    if (isIdle) {
+    if (isIdle&&false) {
         navigate('/');
     }
     const [userid, setUserid] = useState(0);
@@ -105,12 +105,12 @@ function UserProfile() {
                             <thead>
                                 <tr>
                                     <td>User ID</td>
-                                    <td>Name</td>
-                                    <td>Username</td>
-                                    <td>Email</td>
-                                    <td>Phone</td>
-                                    <td>House Number</td>
-                                    <td>Flat Size</td>
+                                    <td>Garbage Collector</td>
+                                    <td>Water Charges</td>
+                                    <td>Electricity</td>
+                                    <td>Others</td>
+                                    <td>Total Amount</td>
+                                    <td>Status</td>
                                 </tr>
                             </thead>
                             <tbody>

@@ -32,7 +32,7 @@ class AdminService{
         return axios.post(BILL_API_BASE_URL,record);
     }
     getMaintenanceRecords(obj){
-        return axios.get(Maintenance_API_BASE_URL+"/"+obj.month+"/"+obj.year);
+        return axios.get(Maintenance_API_BASE_URL);
     }
     getDefaultersRecords(obj){
         return axios.get(Defaulter_API_BASE_URL);

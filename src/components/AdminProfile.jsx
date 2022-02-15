@@ -35,18 +35,6 @@ function AdminProfile() {
         setEmail(localStorage.getItem('email'));
         setPhone(localStorage.getItem('phone'));
     }, [adminID]);
-    function showMembers() {
-        navigate('/showMembers');
-    }
-    function showMaintenance() {
-        navigate('/showMaintenance');
-    }
-    function showDefaulters() {
-        navigate('/showDefaulters');
-    }
-    function showSocietyBillRecords() {
-        navigate('/showSocietyBillRecords');
-    }
     return (
         <div>
             <div className='loginBackGround'>

@@ -83,7 +83,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 .scrollMyTableBig{
   overflow-y: auto;
-  height:500px;
+  height:450px;
   width:100%;
 }
 .myformselect{

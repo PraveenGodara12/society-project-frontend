@@ -9,8 +9,8 @@ class UserService{
         return axios.post(USER_API_BASE_URL,user);
     }
 
-    getMaintenanceData(userID,year){
-        return axios.get(Maintenance_API_BASE_URL+'/'+userID+'/'+2020);
+    getMaintenanceData(userID){
+        return axios.get(Maintenance_API_BASE_URL+'/'+userID);
     }
     getSocietyBillRecords(){
         return axios.get(Bill_API_BASE_URL);
